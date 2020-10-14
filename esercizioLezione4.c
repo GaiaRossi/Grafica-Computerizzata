@@ -10,19 +10,16 @@
 // Number of elements in the circular buffer
 #define NELS    10
 
-#define MAXPUNTI 10
+#define MAXPUNTI 100
 #define DIM 1000.0
 #define BORDERSIZE 10.0
-
-int hasColore = 1;
 
 typedef struct{
     float x;
     float y;
 } PuntoGrafico;
 
-PuntoGrafico puntiNoColore[MAXPUNTI];
-PuntoGrafico puntiColore[MAXPUNTI];
+PuntoGrafico punti[MAXPUNTI];
 // circular buffer used to compute frame rate
 float circularBuffer[NELS];
 int firstInd = 0, nEls = 0;
@@ -102,20 +99,11 @@ void computeAndShowFrameRate(void)
         //salvataggio coordinate punti grafico
 
         if(j < MAXPUNTI){
-            if(hasColore == 1){
-                puntiNoColore[j].x = curLines;
-                puntiNoColore[j].y = sumFPS/(nEls);
-                
-                printf("linee disegnate: %f\t fps: %f\n", puntiNoColore[j].x, sumFPS/nEls);
-                j++;
-            }
-            else{
-                puntiColore[j].x = curLines;
-                puntiColore[j].y = sumFPS/(nEls);
-                
-                printf("linee disegnate: %f\t fps: %f\n", puntiColore[j].x, sumFPS/nEls);
-                j++;
-            }
+            punti[j].x = curLines;
+            punti[j].y = sumFPS/(nEls);
+            
+            printf("linee disegnate: %f\t fps: %f\n", punti[j].x, sumFPS/nEls);
+            j++;
         }
     }
 }
@@ -133,9 +121,7 @@ void display(){
         for(i = 0; i < curLines; i++){
             glColor3f((float) rand()/RAND_MAX, (float) rand()/RAND_MAX, (float) rand()/RAND_MAX);
             glVertex2f((float) rand()/RAND_MAX * DIM, (float) rand()/RAND_MAX * DIM);
-            if(hasColore == 0){
-                glColor3f((float) rand()/RAND_MAX, (float) rand()/RAND_MAX, (float) rand()/RAND_MAX);
-            }
+            //glColor3f((float) rand()/RAND_MAX, (float) rand()/RAND_MAX, (float) rand()/RAND_MAX);
             glVertex2f((float) rand()/RAND_MAX * DIM, (float) rand()/RAND_MAX * DIM);
         }
 
@@ -152,51 +138,33 @@ void display(){
         glutPostRedisplay();
     }
     else{
-        if(hasColore == 1){
-            j = 0;
-            hasColore = 0;
-            curLines = 1;
-            glutPostRedisplay();
-        }
-        else{
-            printf("Test ended\n");
-            glClear(GL_COLOR_BUFFER_BIT);
 
-            glBegin(GL_LINES);
+        printf("Test ended\n");
+        glClear(GL_COLOR_BUFFER_BIT);
 
-                glColor3d(1.0, 1.0, 1.0);
-                //asse y
-                glVertex2f(0.0, 0.0);
-                glVertex2f(0.0, DIM);
-                //asse x
-                glVertex2f(0.0, 0.0);
-                glVertex2f(DIM, 0.0);
-            glEnd();
+        glBegin(GL_LINES);
 
-            glBegin(GL_LINE_STRIP);
+            glColor3d(1.0, 1.0, 1.0);
+            //asse y
+            glVertex2f(0.0, 0.0);
+            glVertex2f(0.0, DIM);
+            //asse x
+            glVertex2f(0.0, 0.0);
+            glVertex2f(DIM, 0.0);
+        glEnd();
 
-                glColor3f(1.0, 0.0, 0.0);
-                for(j = 0; j < MAXPUNTI; j++){
-                    printf("x: %f\ty: %f\n", (float) puntiNoColore[j].x/DIM * 10, puntiNoColore[j].y);
-                    glVertex2f((float) puntiNoColore[j].x/DIM * 10, puntiNoColore[j].y);
-                }
+        glBegin(GL_LINE_STRIP);
 
-            glEnd();
+            glColor3f(1.0, 0.0, 0.0);
+            for(j = 0; j < MAXPUNTI; j++){
+                printf("x: %f\ty: %f\n", (float) punti[j].x/DIM * 10, punti[j].y);
+                glVertex2f((float) punti[j].x/DIM * 10, punti[j].y);
+            }
 
-            printf("\n");
-            
-            glBegin(GL_LINE_STRIP);
+        glEnd();
 
-                glColor3f(0.0, 0.0, 1.0);
-                for(j = 0; j < MAXPUNTI; j++){
-                    printf("x: %f\ty: %f\n", (float) puntiColore[j].x/DIM * 10, puntiColore[j].y);
-                    glVertex2f((float) puntiColore[j].x/DIM * 10, puntiColore[j].y);
-                }
-
-            glEnd();
-
-            glFlush();
-        }
+        glFlush();
+        
     }
 }
 
