@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1584924393 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/drawCubeAndLidVertexArrayObjects/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+
+1585101417 source:/media/ComputerGraphics/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/Lecture5/drawCubeAndLidVertexArrayObjects/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+
+1585101417 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture5/drawCubeAndLidVertexArrayObjects/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+
+1591050569 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture05/drawCubeAndLidVertexArrayObjects/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+
