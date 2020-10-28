@@ -3,6 +3,9 @@
 #define NFACCE 4
 #define NVERTICIPERFACCIA 4
 
+//per mantenere i riferimenti ai buffers
+unsigned int buffers[2];
+
 GLfloat vertici[NFACCE * NVERTICIPERFACCIA * 3] = {
     // first face - v0,v1,v3,v2
     0.5, -0.5, 0.5, // v0
@@ -52,15 +55,26 @@ GLfloat colori[NFACCE * NVERTICIPERFACCIA * 3] = {
     0.0, 1.0, 1.0
 };
 
+GLubyte indici[NFACCE * NVERTICIPERFACCIA] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+
+int first = 1;
+
 void display(){
     
     int indiceFaccia, indiceVertice;
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glRotatef(-45.0, 1.0, 0.0, 0.0);
-    glRotatef(30.0, 0.0, 1.0, 0.0);
-
+    if(first == 1){
+        //ogni volta che viene chiamata la funzione display si
+        //fa ruotare il sistema dalla OpenGL, facendo ruotare il
+        //cubo all'infinito se usa postredisplay
+        //
+        //con questo if non si gira piu il cubo
+        glRotatef(-45.0, 1.0, 0.0, 0.0);
+        glRotatef(30.0, 0.0, 1.0, 0.0);
+        first = 0;
+    }
     //questo ciclo e da usare se si voglio scorrere
     //gli array dei vertici e dei colori
     //come si farebbe nella programmazione classica
@@ -77,6 +91,10 @@ void display(){
     }
     */
 
+    //questo ciclo e da usare quando si sono creati gli
+    //array per vertici e colori e si sono attivati gli array
+    //vertex e color
+    /*
     for(indiceFaccia = 0; indiceFaccia < NFACCE; indiceFaccia++){
         glBegin(GL_TRIANGLE_STRIP);
         for(indiceVertice = 0; indiceVertice < NVERTICIPERFACCIA; indiceVertice ++){
@@ -84,8 +102,21 @@ void display(){
         }
         glEnd();
     }
+    */
+
+    //usando i VAO e VBO
+    //un buffer contiene sia i vertici sia i colori
+    //questo buffer sta in buffers[0]
+    //nel secondo buffer ci sono gli indici
+    //si necessita di glvertexpointer e glcolorpointer
+
+    for(indiceFaccia = 0; indiceFaccia < NFACCE; indiceFaccia++){
+        glDrawElements(GL_TRIANGLE_STRIP, NVERTICIPERFACCIA, GL_UNSIGNED_BYTE, (GLvoid*)(indiceFaccia * NVERTICIPERFACCIA * sizeof(GLbyte)));
+    }
 
     glFlush();
+
+    glutPostRedisplay();
 }
 
 void init(){
@@ -115,9 +146,29 @@ void init(){
     glEnableClientState(GL_COLOR_ARRAY);
     glEnableClientState(GL_VERTEX_ARRAY);
     //bisogna dirgli quali sono questi array
-    glColorPointer(3, GL_FLOAT, 0, colori);
-    glVertexPointer(3, GL_FLOAT, 0, vertici);
+    //glColorPointer(3, GL_FLOAT, 0, colori);
+    //glVertexPointer(3, GL_FLOAT, 0, vertici);
 
+    //uso vao e vbo
+    //necessita di vertex e color array attivi
+    glGenBuffers(2, buffers);
+    //buffer per vertici e colori
+    glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertici) + sizeof(colori), NULL, GL_STATIC_DRAW);
+
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertici), vertici);
+    glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertici), sizeof(colori), colori);
+
+    //buffer per gli indici
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
+
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indici), indici, GL_STATIC_DRAW);
+
+    //specifica l'array contenente i vertici
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+    //specifica l'array contenente i colori
+    glColorPointer(3, GL_FLOAT, 0, (GLvoid*)sizeof(vertici));
 }
 
 int main(int argc, char** argv){
