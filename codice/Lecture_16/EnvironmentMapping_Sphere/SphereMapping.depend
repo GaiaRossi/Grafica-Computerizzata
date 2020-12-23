@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1589576908 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/SphereMapping/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+
+1589577163 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/SphereMapping/readBMP.h
+
+1589577235 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/SphereMapping/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+
+1589577235 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/EnvironmentMapping_Sphere/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+
+1589577163 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/EnvironmentMapping_Sphere/readBMP.h
+
+1590617813 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/EnvironmentMapping_Sphere/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+

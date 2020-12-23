@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1586866425 source:/media/casile/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/PushPopExample/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+
+1586986414 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/PushPopExample/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+
+1586986414 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_10/PushPopExample/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+

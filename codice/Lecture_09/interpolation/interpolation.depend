@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1586556441 source:/media/casile/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/interpolation/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+
+1604391426 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/interpolation/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+

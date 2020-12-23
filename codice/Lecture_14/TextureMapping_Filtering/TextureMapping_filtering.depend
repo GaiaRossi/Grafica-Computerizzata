@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1590487548 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping_filtering/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+
+1588584807 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping_filtering/readBMP.h
+
+1588586418 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping_filtering/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+
+1590487635 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping_Filtering/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+
+1588584807 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping_Filtering/readBMP.h
+
+1588586418 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping_Filtering/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+
+1605355257 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_14/TextureMapping_Filtering/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+
+1588584807 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_14/TextureMapping_Filtering/readBMP.h
+
+1588586418 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_14/TextureMapping_Filtering/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+

@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1587038109 source:/media/casile/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/LightingAndShading_normals/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+
+1588582995 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/LightingAndShading_normals/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+

@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1585088326 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/mouse_Keyboard_Fonts/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+
+1585238668 source:/media/casile/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/mouse_Keyboard_Fonts_Menu/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+
+1585275900 source:/media/ComputerGraphics/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/mouse_Keyboard_Fonts_Menu/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+

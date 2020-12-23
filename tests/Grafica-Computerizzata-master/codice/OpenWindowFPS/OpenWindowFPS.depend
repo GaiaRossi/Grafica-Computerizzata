@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1580592538 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/OpenWindow/main.c
+	<stdlib.h>
+	<GL/glx.h>
+	<GL/freeglut.h>
+	<GL/glext.h>
+
+1580595402 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/OpenWindow/main.cpp
+	<GL/glut.h>
+	<iostream>
+	<unistd.h>
+	<time.h>
+
+1583778452 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/OpenWindowFPS/main.cpp
+	<GL/glut.h>
+	<unistd.h>
+	<time.h>
+	<stdio.h>
+
+1580679509 source:/media/studente/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/OpenWindowFPS/main.cpp
+	<GL/glut.h>
+	<iostream>
+	<numeric>
+	<unistd.h>
+	<boost/circular_buffer.hpp>
+	<time.h>
+
+1582141939 source:/media/casile/Data/Computer_Graphics/SourceCode/OpenWindowFPS/main.cpp
+	<GL/glut.h>
+	<unistd.h>
+	<time.h>
+	<stdio.h>
+
+1584107724 source:/media/ComputerGraphics/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/OpenWindowFPS/main.cpp
+	<GL/glut.h>
+	<unistd.h>
+	<time.h>
+	<stdio.h>
+
+1585410619 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/OpenWindowFPS/main.cpp
+	<GL/glut.h>
+	<unistd.h>
+	<time.h>
+	<stdio.h>
+

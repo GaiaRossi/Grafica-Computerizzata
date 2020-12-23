@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1590670859 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/EnvronmentMapping_Cube/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+
+1589627496 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/EnvronmentMapping_Cube/readBMP.h
+
+1589627444 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/EnvronmentMapping_Cube/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+

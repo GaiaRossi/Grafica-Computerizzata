@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1585660171 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/spatialTransformations/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+
+1586468235 source:/media/casile/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/spatialTransformations/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+
+1603697852 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/spatialTransformations/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+

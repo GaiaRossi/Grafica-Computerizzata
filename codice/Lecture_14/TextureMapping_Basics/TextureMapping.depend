@@ -1,0 +1,60 @@
+# depslib dependency file v1.0
+1587429372 source:/media/casile/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"getBMP.h"
+
+1587421475 source:/media/casile/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<GL/gl.h>
+
+1587425564 /media/casile/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping/getBMP.h
+
+1587427707 source:/media/casile/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping/getBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"getBMP.h"
+
+1587427707 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping/getBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"getBMP.h"
+
+1587425564 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping/getBMP.h
+
+1589015151 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+
+1588586095 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping/readBMP.h
+
+1589030562 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+
+1589030562 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_14/TextureMapping_Basics/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+
+1588586095 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_14/TextureMapping_Basics/readBMP.h
+
+1605360030 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_14/TextureMapping_Basics/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+

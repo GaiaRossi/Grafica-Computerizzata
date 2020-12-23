@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1580592538 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/OpenWindow/main.c
+	<stdlib.h>
+	<GL/glx.h>
+	<GL/freeglut.h>
+	<GL/glext.h>
+
+1581973843 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/OpenWindow/main.cpp
+	<GL/glut.h>
+
+1580826528 source:/media/studente/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/OpenWindow/main.cpp
+	<GL/glut.h>
+	<iostream>
+
+1584096373 source:/media/ComputerGraphics/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/OpenWindow/main.cpp
+	<GL/glut.h>
+	<stdio.h>
+

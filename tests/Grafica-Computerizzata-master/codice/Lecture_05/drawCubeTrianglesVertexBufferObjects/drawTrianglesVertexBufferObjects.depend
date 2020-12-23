@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1584880580 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/drawTrianglesVertexBufferObjects/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+
+1584999495 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/drawCubeTrianglesVertexBufferObjects/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+
+1585101267 source:/media/ComputerGraphics/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/Lecture5/drawCubeTrianglesVertexBufferObjects/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+
+1585223877 source:/media/ComputerGraphics/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture5/drawCubeTrianglesVertexBufferObjects/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+
+1585335616 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture5/drawCubeTrianglesVertexBufferObjects/main.c
+	<GL/glew.h>
+	<GL/glut.h>
+	<stdio.h>
+

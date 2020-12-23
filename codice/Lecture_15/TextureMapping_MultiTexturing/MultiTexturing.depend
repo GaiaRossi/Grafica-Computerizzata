@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1589985372 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/MultiTexturing/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+
+1589480832 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/MultiTexturing/readBMP.h
+
+1589480796 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/MultiTexturing/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+
+1590525087 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping_MultiTexturing/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+
+1589480832 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping_MultiTexturing/readBMP.h
+
+1589480796 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/TextureMapping_MultiTexturing/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+
+1593170907 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_15/TextureMapping_MultiTexturing/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+	"readBMP.h"
+
+1589480832 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_15/TextureMapping_MultiTexturing/readBMP.h
+
+1589480796 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_15/TextureMapping_MultiTexturing/readBMP.c
+	<stdio.h>
+	<stdlib.h>
+	<GL/gl.h>
+	"readBMP.h"
+

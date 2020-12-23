@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1584834895 source:/media/casile/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/drawTrianglesArrayElement/main.c
+	<GL/glut.h>
+
+1585050567 source:/media/ComputerGraphics/Maxtor/MyRepDirs/Research/Docs/Teaching/Computer_Graphics/SourceCode/drawCubeTrianglesArrayElement/main.c
+	<GL/glut.h>
+
+1585222827 source:/media/ComputerGraphics/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture5/drawCubeTrianglesArrayElement/main.c
+	<GL/glut.h>
+
+1586437001 source:/media/casile/Maxtor/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture5/drawCubeTrianglesArrayElement/main.c
+	<GL/glut.h>
+
+1586437001 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture5/drawCubeTrianglesArrayElement/main.c
+	<GL/glut.h>
+
