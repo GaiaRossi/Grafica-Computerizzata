@@ -105,11 +105,11 @@ void display(void)
         // random color
         glColor3f((float)rand()/RAND_MAX, (float)rand()/RAND_MAX, (float)rand()/RAND_MAX);
         // random first point
-        glVertex3f((float)rand()/RAND_MAX, (float)rand()/RAND_MAX, 0.0);
+        glVertex3f((float)rand()/RAND_MAX, (float)rand()/RAND_MAX, -1.0);
         // random color
         glColor3f((float)rand()/RAND_MAX, (float)rand()/RAND_MAX, (float)rand()/RAND_MAX);
         // random second point
-        glVertex3f((float)rand()/RAND_MAX, (float)rand()/RAND_MAX, 0.0);
+        glVertex2f((float)rand()/RAND_MAX, (float)rand()/RAND_MAX);
         glEnd();
     }
 
@@ -128,9 +128,7 @@ void init (void)
 
     // Orthographic projection
     //glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
-
-    //proiezione prospettica
-    glFrustum(0.0, 1.0, 0.0, 1.0, 0.0, 2.0);
+    glFrustum(0.0, 0.9, 0.0, 0.9, 0.9, 1.1);
 }
 
 // Window size and mode

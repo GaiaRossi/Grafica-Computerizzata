@@ -1,0 +1,142 @@
+# depslib dependency file v1.0
+1591647869 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndThorus/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<cglm/cglm.h>
+	<stdio.h>
+	<math.h>
+	"vertex.h"
+	<cglm/cglm.h>
+	<cglm/common.h>
+	<cglm/types-struct.h>
+	"hemisphere.h"
+
+1591647905 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndThorus/vertex.h
+	<cglm/cglm.h>
+
+1591647894 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndThorus/hemisphere.h
+	"vertex.h"
+
+1592863185 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndTorus/hemisphere.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<math.h>
+	"hemisphere.h"
+
+1592863479 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndTorus/hemisphere.h
+	"vertex.h"
+
+1592169918 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndTorus/vertex.h
+	<cglm/cglm.h>
+	<cglm/types-struct.h>
+
+1592605026 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndTorus/shader.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<string.h>
+
+1592844053 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndTorus/torus.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<math.h>
+	<cglm/types-struct.h>
+	"torus.h"
+
+1592172253 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndTorus/torus.h
+	"vertex.h"
+
+1592999809 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndTorus/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<cglm/cglm.h>
+	<stdio.h>
+	<math.h>
+	"shader.h"
+	"hemisphere.h"
+	"torus.h"
+
+1591650356 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shader_BallAndTorus/shader.h
+
+1592863185 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shaders_BallAndTorus/hemisphere.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<math.h>
+	"hemisphere.h"
+
+1592863479 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shaders_BallAndTorus/hemisphere.h
+	"vertex.h"
+
+1592169918 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shaders_BallAndTorus/vertex.h
+	<cglm/cglm.h>
+	<cglm/types-struct.h>
+
+1593623362 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shaders_BallAndTorus/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<cglm/cglm.h>
+	<stdio.h>
+	<math.h>
+	"shader.h"
+	"hemisphere.h"
+	"torus.h"
+
+1591650356 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shaders_BallAndTorus/shader.h
+
+1592172253 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shaders_BallAndTorus/torus.h
+	"vertex.h"
+
+1592605026 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shaders_BallAndTorus/shader.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<string.h>
+
+1592844053 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shaders_BallAndTorus/torus.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<math.h>
+	<cglm/types-struct.h>
+	"torus.h"
+
+1592863185 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_20/Shaders_BallAndTorus/hemisphere.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<math.h>
+	"hemisphere.h"
+
+1605341386 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_20/Shaders_BallAndTorus/hemisphere.h
+	"vertex.h"
+
+1592169918 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_20/Shaders_BallAndTorus/vertex.h
+	<cglm/cglm.h>
+	<cglm/types-struct.h>
+
+1605306768 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_20/Shaders_BallAndTorus/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<cglm/cglm.h>
+	<stdio.h>
+	<math.h>
+	"shader.h"
+	"hemisphere.h"
+	"torus.h"
+
+1591650356 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_20/Shaders_BallAndTorus/shader.h
+
+1592172253 /media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_20/Shaders_BallAndTorus/torus.h
+	"vertex.h"
+
+1592605026 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_20/Shaders_BallAndTorus/shader.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<string.h>
+
+1592844053 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_20/Shaders_BallAndTorus/torus.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<math.h>
+	<cglm/types-struct.h>
+	"torus.h"
+

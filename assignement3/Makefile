@@ -1,2 +1,2 @@
-output: esercizioLezione5.c
-	gcc -o output esercizioLezione5.c -lGL -lX11 -LGLUT -lglut
+output: assignment3.c
+	gcc -o output assignment3.c -lGL -lglut -lGLU -lX11 -lGLEW

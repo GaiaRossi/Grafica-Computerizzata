@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1591543415 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Shaders_Square/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+
+1591543415 source:/media/casile/Data/MyRepDirs/Teaching/Computer_Graphics/SourceCode/Lecture_19/Shaders_Square/main.c
+	<GL/glew.h>
+	<GL/freeglut.h>
+	<stdio.h>
+	<math.h>
+
