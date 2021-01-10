@@ -21,95 +21,75 @@ void display(){
     glBegin(GL_TRIANGLE_FAN);
         glColor3f(0.0, 1.0, 0.0);
         glVertex3f(0.0, 0.0, 0.0);
-        glColor3f(1.0, 1.0, 0.0);
         glVertex3f(LATO, 0.0, 0.0);
         glVertex3f(LATO * 2/3, LATO/3, 0.0);
         glVertex3f(LATO/3, LATO/3, 0.0);
         glVertex3f(LATO/3, LATO * 2/3, 0.0);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(0.0, LATO, 0.0);
     glEnd();
     glBegin(GL_TRIANGLE_FAN);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(LATO, LATO, 0.0);
-        glColor3f(1.0, 1.0, 0.0);
         glVertex3f(LATO, 0.0, 0.0);
         glVertex3f(LATO * 2/3, LATO/3, 0.0);
         glVertex3f(LATO * 2/3, LATO * 2/3, 0.0);
         glVertex3f(LATO/3, LATO * 2/3, 0.0);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(0.0, LATO, 0.0);
     glEnd();
 
     //seconda faccia
     glBegin(GL_TRIANGLE_FAN);
-        glColor3f(0.0, 1.0, 0.0);
+        glColor3f(1.0, 0.0, 0.0);
         glVertex3f(LATO, 0.0, 0.0);
-        glColor3f(1.0, 1.0, 0.0);
         glVertex3f(LATO, LATO, 0.0);
         glVertex3f(LATO, LATO * 2/3, LATO/3);
         glVertex3f(LATO, LATO/3, LATO/3);
         glVertex3f(LATO, LATO/3, LATO * 2/3);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(LATO, 0.0, LATO);
     glEnd();
     glBegin(GL_TRIANGLE_FAN);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(LATO, LATO, LATO);
-        glColor3f(1.0, 1.0, 0.0);
         glVertex3f(LATO, LATO, 0.0);
         glVertex3f(LATO, LATO * 2/3, LATO/3);
         glVertex3f(LATO, LATO * 2/3, LATO * 2/3);
         glVertex3f(LATO, LATO/3, LATO * 2/3);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(LATO, 0.0, LATO);
     glEnd();
 
     //terza faccia
     glBegin(GL_TRIANGLE_FAN);
-        glColor3f(0.0, 1.0, 0.0);
+        glColor3f(0.0, 1.0, 1.0);
         glVertex3f(LATO, 0.0, LATO);
-        glColor3f(1.0, 1.0, 0.0);
         glVertex3f(0.0, 0.0, LATO);
         glVertex3f(LATO/3, LATO/3, LATO);
         glVertex3f(LATO * 2/3, LATO/3, LATO);
         glVertex3f(LATO * 2/3, LATO * 2/3, LATO);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(LATO, LATO, LATO);
     glEnd();
     glBegin(GL_TRIANGLE_FAN);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(0.0, LATO, LATO);
-        glColor3f(1.0, 1.0, 0.0);
         glVertex3f(0.0, 0.0, LATO);
         glVertex3f(LATO/3, LATO/3, LATO);
         glVertex3f(LATO/3, LATO * 2/3, LATO);
         glVertex3f(LATO * 2/3, LATO * 2/3, LATO);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(LATO, LATO, LATO);
     glEnd();
 
     //quarta faccia
     glBegin(GL_TRIANGLE_FAN);
-        glColor3f(0.0, 1.0, 0.0);
+        glColor3f(0.0, 0.0, 1.0);
         glVertex3f(0.0, 0.0, LATO);
-        glColor3f(1.0, 1.0, 0.0);
         glVertex3f(0.0, 0.0, 0.0);
         glVertex3f(0.0, LATO/3, LATO/3);
         glVertex3f(0.0, LATO/3, LATO * 2/3);
         glVertex3f(0.0, LATO * 2/3, LATO * 2/3);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(0.0, LATO, LATO);
     glEnd();
     glBegin(GL_TRIANGLE_FAN);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(0.0, LATO, 0.0);
-        glColor3f(1.0, 1.0, 0.0);
         glVertex3f(0.0, 0.0, 0.0);
         glVertex3f(0.0, LATO/3, LATO/3);
         glVertex3f(0.0, LATO * 2/3, LATO/3);
         glVertex3f(0.0, LATO * 2/3, LATO * 2/3);
-        glColor3f(0.0, 1.0, 0.0);
         glVertex3f(0.0, LATO, LATO);
     glEnd();
     
@@ -137,7 +117,7 @@ void init(){
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     glEnable(GL_DEPTH_TEST);
     glClear(GL_DEPTH_BUFFER_BIT);

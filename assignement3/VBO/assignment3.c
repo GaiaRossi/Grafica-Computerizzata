@@ -2,7 +2,7 @@
 #include <GL/glut.h>
 #include <stdio.h>
 
-#include "cubo.h"
+#include "cuboNoIndices.h"
 
 unsigned int vao[1];
 unsigned int buffers[2];
@@ -19,13 +19,9 @@ void display(){
 
     glBindVertexArray(vao[0]);
 
-    for(indFace = 0; indFace < NFACCE; indFace++){
-        //printf("Disegno faccia n: %d\n", indFace);
-        glDrawElements(GL_TRIANGLE_FAN,                               // mode
-                    NVERTICI,                                         // count
-                    GL_UNSIGNED_INT,                                  // type
-                    (GLvoid *)(indFace * NVERTICI * sizeof(GLuint))); // indices
-    }
+    for (indFace=0; indFace<NFACCE; indFace++) {
+        glDrawArrays(GL_TRIANGLE_FAN, indFace*NVERTICI, NVERTICI);
+    };
 
     glPopMatrix();
 
@@ -74,6 +70,10 @@ void init(){
     glBufferSubData(GL_ARRAY_BUFFER, sizeof(vertices), sizeof(colors), colors);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
+    int i;
+    for(i = 0; i < NFACCE * NVERTICI; i++){
+        indices[i] = i;
+    }
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     glVertexPointer(3, GL_FLOAT, 0, 0);
