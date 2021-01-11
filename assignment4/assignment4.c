@@ -7,9 +7,11 @@
 #include "dati.h"
 #include "circle.h"
 
-GLfloat coordinate_test[10 * 3];
-unsigned int indici[11] = {0, 7, 4, 1, 8, 5, 2, 9, 6, 3, 7};
+/*
+GLfloat coordinate_test[SLICES * 3 + 3];
+unsigned int indici[SLICES + 2];
 unsigned int buffers[2];
+*/
 
 void display(){
     GLint indFace;
@@ -17,22 +19,66 @@ void display(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glPushMatrix();
-
-    //sole
     glTranslatef(coordinate_sole[0], coordinate_sole[1], coordinate_sole[2]);
     glColor3fv(colore_sole);
-    
-    int i;
-    for(i = 0; i < 10; i++){
-        printf("x: %f, y: %f, z: %f\n", coordinate_test[i * 3],
-                                        coordinate_test[i * 3 + 1],
-                                        coordinate_test[i * 3 + 2]);
-    }
+    glBindVertexArray(vao[SOLE]);
+    glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
+    glPopMatrix();
 
+    glPushMatrix();
+    glTranslatef(coordinate_mercurio[0], coordinate_mercurio[1], coordinate_mercurio[2]);
+    glColor3fv(colore_mercurio);
+    glBindVertexArray(vao[MERCURIO]);
+    glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
+    glPopMatrix();
 
-    glDrawElements(GL_TRIANGLE_FAN, 11, GL_UNSIGNED_INT, 0);
+    glPushMatrix();
+    glTranslatef(coordinate_venere[0], coordinate_venere[1], coordinate_venere[2]);
+    glColor3fv(colore_venere);
+    glBindVertexArray(vao[VENERE]);
+    glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
+    glPopMatrix();
 
+    glPushMatrix();
+    glTranslatef(coordinate_terra[0], coordinate_terra[1], coordinate_terra[2]);
+    glColor3fv(colore_terra);
+    glBindVertexArray(vao[TERRA]);
+    glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
+    glPopMatrix();
 
+    glPushMatrix();
+    glTranslatef(coordinate_marte[0], coordinate_marte[1], coordinate_marte[2]);
+    glColor3fv(colore_marte);
+    glBindVertexArray(vao[MARTE]);
+    glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(coordinate_giove[0], coordinate_giove[1], coordinate_giove[2]);
+    glColor3fv(colore_giove);
+    glBindVertexArray(vao[GIOVE]);
+    glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(coordinate_saturno[0], coordinate_saturno[1], coordinate_saturno[2]);
+    glColor3fv(colore_saturno);
+    glBindVertexArray(vao[SATURNO]);
+    glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(coordinate_urano[0], coordinate_urano[1], coordinate_urano[2]);
+    glColor3fv(colore_urano);
+    glBindVertexArray(vao[URANO]);
+    glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
+    glPopMatrix();
+
+    glPushMatrix();
+    glTranslatef(coordinate_nettuno[0], coordinate_nettuno[1], coordinate_nettuno[2]);
+    glColor3fv(colore_nettuno);
+    glBindVertexArray(vao[NETTUNO]);
+    glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
     glPopMatrix();
 
 
@@ -62,18 +108,114 @@ void init(){
     glClear(GL_DEPTH_BUFFER_BIT);
     glDepthFunc(GL_LESS);
 
-    calcola_coordinate(coordinate_test, 10, 10.0);
-    glGenBuffers(2, buffers);
+    glGenVertexArrays(NUMERO_PIANETI, vao);
 
+    glBindVertexArray(vao[SOLE]);
+    calcola_coordinate(sole_vertex, SLICES, RAGGIO_SOLE/SCALA);
+    genera_indici(sole_indices, SLICES + 2);
+    glGenBuffers(2, sole_buffers);
     glEnableClientState(GL_VERTEX_ARRAY);
-
-    glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(coordinate_test), coordinate_test, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indici), indici, GL_STATIC_DRAW);
-
+    glBindBuffer(GL_ARRAY_BUFFER, sole_buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(sole_vertex), sole_vertex, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, sole_buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(sole_indices), sole_indices, GL_STATIC_DRAW);
     glVertexPointer(3, GL_FLOAT, 0, 0);
+
+
+    glBindVertexArray(vao[MERCURIO]);
+    calcola_coordinate(mercurio_vertex, SLICES, RAGGIO_MERCURIO/SCALA);
+    genera_indici(mercurio_indices, SLICES + 2);
+    glGenBuffers(2, mercurio_buffers);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ARRAY_BUFFER, mercurio_buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(mercurio_vertex), mercurio_vertex, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mercurio_buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(mercurio_indices), mercurio_indices, GL_STATIC_DRAW);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+
+
+    glBindVertexArray(vao[VENERE]);
+    calcola_coordinate(venere_vertex, SLICES, RAGGIO_VENERE/SCALA);
+    genera_indici(venere_indices, SLICES + 2);
+    glGenBuffers(2, venere_buffers);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ARRAY_BUFFER, venere_buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(venere_vertex), venere_vertex, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, venere_buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(venere_indices), venere_indices, GL_STATIC_DRAW);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+
+
+    glBindVertexArray(vao[TERRA]);
+    calcola_coordinate(terra_vertex, SLICES, RAGGIO_VENERE/SCALA);
+    genera_indici(terra_indices, SLICES + 2);
+    glGenBuffers(2, terra_buffers);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ARRAY_BUFFER, terra_buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(terra_vertex), terra_vertex, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, terra_buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(terra_indices), terra_indices, GL_STATIC_DRAW);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+
+
+    glBindVertexArray(vao[MARTE]);
+    calcola_coordinate(marte_vertex, SLICES, RAGGIO_MARTE/SCALA);
+    genera_indici(marte_indices, SLICES + 2);
+    glGenBuffers(2, marte_buffers);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ARRAY_BUFFER, marte_buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(marte_vertex), marte_vertex, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, marte_buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(marte_indices), marte_indices, GL_STATIC_DRAW);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+
+    glBindVertexArray(vao[GIOVE]);
+    calcola_coordinate(giove_vertex, SLICES, RAGGIO_GIOVE/SCALA);
+    genera_indici(giove_indices, SLICES + 2);
+    glGenBuffers(2, giove_buffers);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ARRAY_BUFFER, giove_buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(giove_vertex), giove_vertex, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, giove_buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(giove_indices), giove_indices, GL_STATIC_DRAW);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+
+
+    glBindVertexArray(vao[SATURNO]);
+    calcola_coordinate(saturno_vertex, SLICES, RAGGIO_SATURNO/SCALA);
+    genera_indici(saturno_indices, SLICES + 2);
+    glGenBuffers(2, saturno_buffers);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ARRAY_BUFFER, saturno_buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(saturno_vertex), saturno_vertex, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, saturno_buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(saturno_indices), saturno_indices, GL_STATIC_DRAW);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+
+
+    glBindVertexArray(vao[URANO]);
+    calcola_coordinate(urano_vertex, SLICES, RAGGIO_URANO/SCALA);
+    genera_indici(urano_indices, SLICES + 2);
+    glGenBuffers(2, urano_buffers);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ARRAY_BUFFER, urano_buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(urano_vertex), urano_vertex, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, urano_buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(urano_indices), urano_indices, GL_STATIC_DRAW);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+
+
+    glBindVertexArray(vao[NETTUNO]);
+    calcola_coordinate(nettuno_vertex, SLICES, RAGGIO_NETTUNO/SCALA);
+    genera_indici(nettuno_indices, SLICES + 2);
+    glGenBuffers(2, nettuno_buffers);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glBindBuffer(GL_ARRAY_BUFFER, nettuno_buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(nettuno_vertex), nettuno_vertex, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nettuno_buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(nettuno_indices), nettuno_indices, GL_STATIC_DRAW);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+
 }
 
 int main(int argc, char** argv){
