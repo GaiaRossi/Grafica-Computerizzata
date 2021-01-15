@@ -13,6 +13,19 @@ unsigned int indici[SLICES + 2];
 unsigned int buffers[2];
 */
 
+#define TEST 10000
+
+void aggiorna_angoli(int value){
+    angolo_mercurio += RIVOLUZIONE_MERCURIO/TEST;
+    angolo_venere += RIVOLUZIONE_VENERE/TEST;
+    angolo_terra += RIVOLUZIONE_TERRA/TEST;
+    angolo_marte += RIVOLUZIONE_MARTE/TEST;
+    angolo_giove += RIVOLUZIONE_GIOVE/TEST;
+    angolo_saturno += RIVOLUZIONE_SATURNO/TEST;
+    angolo_urano += RIVOLUZIONE_URANO/TEST;
+    angolo_nettuno += RIVOLUZIONE_NETTUNO/TEST;
+}
+
 void display(){
     GLint indFace;
     
@@ -26,63 +39,84 @@ void display(){
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(coordinate_mercurio[0], coordinate_mercurio[1], coordinate_mercurio[2]);
+    glTranslatef((coordinate_mercurio[0] - coordinate_sole[0]) * cos(angolo_mercurio) + coordinate_sole[0],
+                 (coordinate_mercurio[0] - coordinate_sole[0]) * sin(angolo_mercurio) + coordinate_sole[1],
+                 coordinate_mercurio[2]);
     glColor3fv(colore_mercurio);
     glBindVertexArray(vao[MERCURIO]);
     glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(coordinate_venere[0], coordinate_venere[1], coordinate_venere[2]);
+    glTranslatef((coordinate_venere[0] - coordinate_sole[0]) * cos(angolo_venere) + coordinate_sole[0],
+                 (coordinate_venere[0] - coordinate_sole[0]) * sin(angolo_mercurio) + coordinate_sole[1],
+                 coordinate_venere[2]);
+
     glColor3fv(colore_venere);
     glBindVertexArray(vao[VENERE]);
     glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(coordinate_terra[0], coordinate_terra[1], coordinate_terra[2]);
+    glTranslatef((coordinate_terra[0] - coordinate_sole[0]) * cos(angolo_terra) + coordinate_sole[0],
+                 (coordinate_terra[0] - coordinate_sole[0]) * sin(angolo_terra) + coordinate_sole[1],
+                 coordinate_terra[2]);
     glColor3fv(colore_terra);
     glBindVertexArray(vao[TERRA]);
     glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(coordinate_marte[0], coordinate_marte[1], coordinate_marte[2]);
+    glTranslatef((coordinate_marte[0] - coordinate_sole[0]) * cos(angolo_marte) + coordinate_sole[0],
+                 (coordinate_marte[0] - coordinate_sole[0]) * sin(angolo_marte) + coordinate_sole[1],
+                 coordinate_marte[2]);
     glColor3fv(colore_marte);
     glBindVertexArray(vao[MARTE]);
     glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(coordinate_giove[0], coordinate_giove[1], coordinate_giove[2]);
+    glTranslatef((coordinate_giove[0] - coordinate_sole[0]) * cos(angolo_giove) + coordinate_sole[0],
+                 (coordinate_giove[0] - coordinate_sole[0]) * sin(angolo_giove) + coordinate_sole[1],
+                 coordinate_giove[2]);
+    
     glColor3fv(colore_giove);
     glBindVertexArray(vao[GIOVE]);
     glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
+    
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(coordinate_saturno[0], coordinate_saturno[1], coordinate_saturno[2]);
+    glTranslatef((coordinate_saturno[0] - coordinate_sole[0]) * cos(angolo_saturno) + coordinate_sole[0],
+                 (coordinate_saturno[0] - coordinate_sole[0]) * sin(angolo_saturno) + coordinate_sole[1],
+                 coordinate_saturno[2]);
     glColor3fv(colore_saturno);
     glBindVertexArray(vao[SATURNO]);
     glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(coordinate_urano[0], coordinate_urano[1], coordinate_urano[2]);
+    glTranslatef((coordinate_urano[0] - coordinate_sole[0]) * cos(angolo_urano) + coordinate_sole[0],
+                 (coordinate_urano[0] - coordinate_sole[0]) * sin(angolo_urano) + coordinate_sole[1],
+                 coordinate_urano[2]);
     glColor3fv(colore_urano);
     glBindVertexArray(vao[URANO]);
     glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
     glPopMatrix();
 
     glPushMatrix();
-    glTranslatef(coordinate_nettuno[0], coordinate_nettuno[1], coordinate_nettuno[2]);
+    glTranslatef((coordinate_nettuno[0] - coordinate_sole[0]) * cos(angolo_nettuno) + coordinate_sole[0],
+                 (coordinate_nettuno[0] - coordinate_sole[0]) * sin(angolo_nettuno) + coordinate_sole[1],
+                 coordinate_nettuno[2]);
     glColor3fv(colore_nettuno);
     glBindVertexArray(vao[NETTUNO]);
     glDrawElements(GL_TRIANGLE_FAN, SLICES + 2, GL_UNSIGNED_INT, 0);
     glPopMatrix();
-
+    
+    glutTimerFunc(TEMPO, aggiorna_angoli, 0);
 
     glFinish();
+    glutPostRedisplay();
 }
 
 void init(){

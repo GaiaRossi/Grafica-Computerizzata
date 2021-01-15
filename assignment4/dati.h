@@ -3,7 +3,9 @@
 
 #define NUMERO_PIANETI 9
 #define SLICES 100
-#define SCALA 1000
+#define SCALA 650
+#define SECONDI_IN_ANNO 31536000
+#define TEMPO 10
 
 unsigned int vao[NUMERO_PIANETI];
 unsigned int sole_buffers[2];
@@ -42,3 +44,12 @@ GLint urano_indices[SLICES + 2];
 
 GLfloat nettuno_vertex[SLICES * 3 + 3];
 GLint nettuno_indices[SLICES + 2];
+
+float angolo_mercurio = 0;
+float angolo_venere = 0;
+float angolo_terra = 0;
+float angolo_marte = 0;
+float angolo_giove = 0;
+float angolo_saturno = 0;
+float angolo_urano = 0;
+float angolo_nettuno = 0;
