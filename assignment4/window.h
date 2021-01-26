@@ -1,7 +1,7 @@
 #define W_HEIGHT 1080
 #define W_WIDTH 1920
 
-#define VIEW_HEIGHT 3375.0
-#define VIEW_WIDTH 6000.0
+#define VIEW_HEIGHT 2812.5
+#define VIEW_WIDTH 5000.0
 #define VIEW_FAR 100.0
-#define VIEW_NEAR 0.0
+#define VIEW_NEAR -100.0
