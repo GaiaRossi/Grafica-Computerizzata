@@ -38,7 +38,7 @@
 GLfloat coordinate_sole[3] = {
     VIEW_WIDTH/2.0,
     VIEW_HEIGHT/2.0,
-    -VIEW_FAR/2.0
+    40.0
 };
 GLfloat colore_sole[3] = {
     245.0/255.0, 210.0/255.0, 11.0/255.0

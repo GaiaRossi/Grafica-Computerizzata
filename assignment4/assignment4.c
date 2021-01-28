@@ -28,178 +28,117 @@ void aggiorna_angoli(int value){
     
 }
 
+void inizializza_buffer_pianeta(int pianeta, int raggio, unsigned int *buffers){
+    glBindVertexArray(vao[pianeta]);
+    fillHemisphere(hemVertices, hemIndices, hemCounts, hemOffsets, raggio/SCALA);
+    glGenBuffers(2, buffers);
+    glBindBuffer(GL_ARRAY_BUFFER, buffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(hemVertices), hemVertices, GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, buffers[1]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hemIndices), hemIndices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(hemVertices[0]), 0);
+    glEnableVertexAttribArray(0);
+}
+
+void disegna_pianeta(int pianeta, float* colore, float* coordinate, char* nome, int lunghezza_nome, int raggio){
+    int i;
+    float matAmbAndDif[4];
+
+    glPushMatrix();
+    glTranslatef(coordinate[0],
+                 coordinate[1],
+                 60.0);
+    glPushMatrix();
+    for(i = 0; i < 4; i++){
+        matAmbAndDif[i] = 1.0;
+    }
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matAmbAndDif);
+    glScalef(1/3.0, 1/3.0, 1/3.0);
+    glTranslatef(-2 * raggio/SCALA, 4 * raggio/SCALA, 0.0);
+    for(i = 0; i < lunghezza_nome; i++){
+        glutStrokeCharacter(GLUT_STROKE_ROMAN, nome[i]);
+    }
+    glPopMatrix();
+    for(i = 0; i < 4; i++){
+        if(i != 3)
+            matAmbAndDif[i] = colore[i];
+        else
+            matAmbAndDif[i] = 0.0;
+    }
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matAmbAndDif);
+    glBindVertexArray(vao[pianeta]);
+    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
+    glRotatef(180, 0.0, 0.0, 1.0);
+    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
+    glPopMatrix();
+    
+}
+
 void display(){
     int i;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    /* materiali */
+    float matAmbAndDif[4];
+
+    /* posizione luce */
+    GLfloat coordinate_luce[] = {0.0, 0.0, 0.0};
+
+    /* luce */
+    glLightfv(GL_LIGHT0, GL_POSITION, coordinate_luce);
+
+    /* attivazione della luce */
+    glEnable(GL_LIGHT0);
+
     glPushMatrix();
     glTranslatef(coordinate_sole[0], coordinate_sole[1], 60.0);
-    glColor3fv(colore_sole);
+    for(i = 0; i < 4; i++){
+        if(i != 3)
+            matAmbAndDif[i] = colore_sole[i];
+        else
+            matAmbAndDif[i] = 0.0;
+    }
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE, matAmbAndDif);
     glBindVertexArray(vao[SOLE]);
     glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
     glRotatef(180, 0.0, 0.0, 1.0);
     glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
     glPopMatrix();
 
-    glPushMatrix();
-    glTranslatef((coordinate_mercurio[0] - coordinate_sole[0]) * cos(angolo_mercurio) + coordinate_sole[0],
-                 (coordinate_mercurio[0] - coordinate_sole[0]) * sin(angolo_mercurio) + coordinate_sole[1],
-                 60.0);
-    glPushMatrix();
-    glColor3f(1.0, 1.0, 1.0);
-    glScalef(1/3.0, 1/3.0, 1/3.0);
-    glTranslatef(-2 * RAGGIO_MERCURIO/SCALA, 4 * RAGGIO_MERCURIO/SCALA, 0.0);
-    char *mercurio = "mercurio";
-    for(i = 0; i < 9; i++){
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, mercurio[i]);
-    }
-    glPopMatrix();
-    glColor3fv(colore_mercurio);
-    glBindVertexArray(vao[MERCURIO]);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glRotatef(180, 0.0, 0.0, 1.0);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glPopMatrix();
+    float coordinate[3] = {
+        (coordinate_mercurio[0] - coordinate_sole[0]) * cos(angolo_mercurio) + coordinate_sole[0],
+        (coordinate_mercurio[0] - coordinate_sole[0]) * sin(angolo_mercurio) + coordinate_sole[1],
+        60.0
+    };
+    disegna_pianeta(MERCURIO, colore_mercurio, coordinate, "mercurio", 9, RAGGIO_MERCURIO);
 
-    glPushMatrix();
-    glTranslatef((coordinate_venere[0] - coordinate_sole[0]) * cos(angolo_venere) + coordinate_sole[0],
-                 (coordinate_venere[0] - coordinate_sole[0]) * sin(angolo_venere) + coordinate_sole[1],
-                 60.0);
-    glPushMatrix();
-    glColor3f(1.0, 1.0, 1.0);
-    glScalef(1/3.0, 1/3.0, 1/3.0);
-    glTranslatef(-2 * RAGGIO_VENERE/SCALA, 4 * RAGGIO_VENERE/SCALA, 0.0);
-    char *venere = "venere";
-    for(i = 0; i < 7; i++){
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, venere[i]);
-    }
-    glPopMatrix();
-    glColor3fv(colore_venere);
-    glBindVertexArray(vao[VENERE]);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glRotatef(180, 0.0, 0.0, 1.0);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glPopMatrix();
+    coordinate[0] = (coordinate_venere[0] - coordinate_sole[0]) * cos(angolo_venere) + coordinate_sole[0];
+    coordinate[1] = (coordinate_venere[0] - coordinate_sole[0]) * sin(angolo_venere) + coordinate_sole[1];
+    disegna_pianeta(VENERE, colore_venere, coordinate, "venere", 7, RAGGIO_VENERE);
 
-    glPushMatrix();
-    glTranslatef((coordinate_terra[0] - coordinate_sole[0]) * cos(angolo_terra) + coordinate_sole[0],
-                 (coordinate_terra[0] - coordinate_sole[0]) * sin(angolo_terra) + coordinate_sole[1],
-                 60.0);
-    glPushMatrix();
-    glColor3f(1.0, 1.0, 1.0);
-    glScalef(1/3.0, 1/3.0, 1/3.0);
-    glTranslatef(-2 * RAGGIO_TERRA/SCALA, 4 * RAGGIO_TERRA/SCALA, 0.0);
-    char *terra = "terra";
-    for(i = 0; i < 6; i++){
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, terra[i]);
-    }
-    glPopMatrix();
-    glColor3fv(colore_terra);
-    glBindVertexArray(vao[TERRA]);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glRotatef(180, 0.0, 0.0, 1.0);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glPopMatrix();
+    coordinate[0] = (coordinate_terra[0] - coordinate_sole[0]) * cos(angolo_terra) + coordinate_sole[0];
+    coordinate[1] = (coordinate_terra[0] - coordinate_sole[0]) * sin(angolo_terra) + coordinate_sole[1];
+    disegna_pianeta(TERRA, colore_terra, coordinate, "terra", 6, RAGGIO_TERRA);
 
-    glPushMatrix();
-    glTranslatef((coordinate_marte[0] - coordinate_sole[0]) * cos(angolo_marte) + coordinate_sole[0],
-                 (coordinate_marte[0] - coordinate_sole[0]) * sin(angolo_marte) + coordinate_sole[1],
-                 60.0);
-    glPushMatrix();
-    glColor3f(1.0, 1.0, 1.0);
-    glScalef(1/3.0, 1/3.0, 1/3.0);
-    glTranslatef(-2 * RAGGIO_MARTE/SCALA, 4 * RAGGIO_MARTE/SCALA, 0.0);
-    char *marte = "marte";
-    for(i = 0; i < 6; i++){
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, marte[i]);
-    }
-    glPopMatrix();
-    glColor3fv(colore_marte);
-    glBindVertexArray(vao[MARTE]);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glRotatef(180, 0.0, 0.0, 1.0);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glPopMatrix();
+    coordinate[0] = (coordinate_marte[0] - coordinate_sole[0]) * cos(angolo_marte) + coordinate_sole[0];
+    coordinate[1] = (coordinate_marte[0] - coordinate_sole[0]) * sin(angolo_marte) + coordinate_sole[1];
+    disegna_pianeta(MARTE, colore_marte, coordinate, "marte", 6, RAGGIO_MARTE);
 
-    glPushMatrix();
-    glTranslatef((coordinate_giove[0] - coordinate_sole[0]) * cos(angolo_giove) + coordinate_sole[0],
-                 (coordinate_giove[0] - coordinate_sole[0]) * sin(angolo_giove) + coordinate_sole[1],
-                 60.0);
-    glPushMatrix();
-    glColor3f(1.0, 1.0, 1.0);
-    glScalef(1/3.0, 1/3.0, 1/3.0);
-    glTranslatef(-2 * RAGGIO_GIOVE/SCALA, 4 * RAGGIO_GIOVE/SCALA, 0.0);
-    char *giove = "giove";
-    for(i = 0; i < 6; i++){
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, giove[i]);
-    }
-    glPopMatrix();
-    glColor3fv(colore_giove);
-    glBindVertexArray(vao[GIOVE]);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glRotatef(180, 0.0, 0.0, 1.0);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glPopMatrix();
+    coordinate[0] = (coordinate_giove[0] - coordinate_sole[0]) * cos(angolo_giove) + coordinate_sole[0];
+    coordinate[1] = (coordinate_giove[0] - coordinate_sole[0]) * sin(angolo_giove) + coordinate_sole[1];
+    disegna_pianeta(GIOVE, colore_giove, coordinate, "giove", 6, RAGGIO_GIOVE);
 
-    glPushMatrix();
-    glTranslatef((coordinate_saturno[0] - coordinate_sole[0]) * cos(angolo_saturno) + coordinate_sole[0],
-                 (coordinate_saturno[0] - coordinate_sole[0]) * sin(angolo_saturno) + coordinate_sole[1],
-                 60.0);
-    glPushMatrix();
-    glColor3f(1.0, 1.0, 1.0);
-    glScalef(1/3.0, 1/3.0, 1/3.0);
-    glTranslatef(-2 * RAGGIO_SATURNO/SCALA, 4 * RAGGIO_SATURNO/SCALA, 0.0);
-    char *saturno = "saturno";
-    for(i = 0; i < 8; i++){
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, saturno[i]);
-    }
-    glPopMatrix();
-    glColor3fv(colore_saturno);
-    glBindVertexArray(vao[SATURNO]);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glRotatef(180, 0.0, 0.0, 1.0);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glPopMatrix();
+    coordinate[0] = (coordinate_saturno[0] - coordinate_sole[0]) * cos(angolo_saturno) + coordinate_sole[0];
+    coordinate[1] = (coordinate_saturno[0] - coordinate_sole[0]) * sin(angolo_saturno) + coordinate_sole[1];
+    disegna_pianeta(SATURNO, colore_saturno, coordinate, "saturno", 8, RAGGIO_SATURNO);
 
-    glPushMatrix();
-    glTranslatef((coordinate_urano[0] - coordinate_sole[0]) * cos(angolo_urano) + coordinate_sole[0],
-                 (coordinate_urano[0] - coordinate_sole[0]) * sin(angolo_urano) + coordinate_sole[1],
-                 60.0);
-    glPushMatrix();
-    glColor3f(1.0, 1.0, 1.0);
-    glScalef(1/3.0, 1/3.0, 1/3.0);
-    glTranslatef(-2 * RAGGIO_URANO/SCALA, 4 * RAGGIO_URANO/SCALA, 0.0);
-    char *urano = "urano";
-    for(i = 0; i < 6; i++){
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, urano[i]);
-    }
-    glPopMatrix();
-    glColor3fv(colore_urano);
-    glBindVertexArray(vao[URANO]);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glRotatef(180, 0.0, 0.0, 1.0);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glPopMatrix();
+    coordinate[0] = (coordinate_urano[0] - coordinate_sole[0]) * cos(angolo_urano) + coordinate_sole[0];
+    coordinate[1] = (coordinate_urano[0] - coordinate_sole[0]) * sin(angolo_urano) + coordinate_sole[1];
+    disegna_pianeta(URANO, colore_urano, coordinate, "urano", 6, RAGGIO_URANO);
 
-    glPushMatrix();
-    glTranslatef((coordinate_nettuno[0] - coordinate_sole[0]) * cos(angolo_nettuno) + coordinate_sole[0],
-                 (coordinate_nettuno[0] - coordinate_sole[0]) * sin(angolo_nettuno) + coordinate_sole[1],
-                 60.0);
-    glPushMatrix();
-    glColor3f(1.0, 1.0, 1.0);
-    glScalef(1/3.0, 1/3.0, 1/3.0);
-    glTranslatef(-2 * RAGGIO_NETTUNO/SCALA, 4 * RAGGIO_NETTUNO/SCALA, 0.0);
-    char *nettuno = "nettuno";
-    for(i = 0; i < 8; i++){
-        glutStrokeCharacter(GLUT_STROKE_ROMAN, nettuno[i]);
-    }
-    glPopMatrix();
-    glColor3fv(colore_urano);
-    glBindVertexArray(vao[URANO]);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glRotatef(180, 0.0, 0.0, 1.0);
-    glMultiDrawElements(GL_TRIANGLE_STRIP, hemCounts, GL_UNSIGNED_INT, (const void **)hemOffsets, HEM_LATS);
-    glPopMatrix();
+    coordinate[0] = (coordinate_nettuno[0] - coordinate_sole[0]) * cos(angolo_nettuno) + coordinate_sole[0];
+    coordinate[1] = (coordinate_nettuno[0] - coordinate_sole[0]) * sin(angolo_nettuno) + coordinate_sole[1];
+    disegna_pianeta(NETTUNO, colore_nettuno, coordinate, "nettuno", 8, RAGGIO_NETTUNO);
 
     glutTimerFunc(TEMPO, aggiorna_angoli, 0);
 
@@ -208,6 +147,35 @@ void display(){
 }
 
 void init(){
+
+    /* luce */
+    // global ambient light
+    float globAmb[] = {0.0, 0.0, 0.0, 1.0};
+
+    // Light property vectors.
+    float lightAmb[] = {0.5, 0.5, 0.5, 1.0};
+    float lightDif[] = {1.0, 1.0, 1.0, 1.0};
+    float lightSpec[] = {0.0, 0.0, 0.0, 1.0};
+
+    /* attiva la luce */
+    glEnable(GL_LIGHTING);
+
+    // Set properties of light number 0
+    glLightfv(GL_LIGHT0, GL_AMBIENT, lightAmb);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, lightDif);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, lightSpec);
+
+    // Global ambient light.
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, globAmb);
+
+    // Enable two-sided lighting.
+    glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_FALSE);
+    // Enable local viewpoint.
+    glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+
+    // set shading model
+    //glShadeModel(GL_FLAT);
+    glShadeModel(GL_SMOOTH);
 
     GLenum glErr;
     if ((glErr=glGetError()) != 0) {
@@ -231,96 +199,15 @@ void init(){
 
     glGenVertexArrays(NUMERO_PIANETI, vao);
 
-    glBindVertexArray(vao[SOLE]);
-    fillHemisphere(hemVertices, hemIndices, hemCounts, hemOffsets, RAGGIO_SOLE/SCALA);
-    glGenBuffers(2, sole_buffers);
-    glBindBuffer(GL_ARRAY_BUFFER, sole_buffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(hemVertices), hemVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, sole_buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hemIndices), hemIndices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(hemVertices[0]), 0);
-    glEnableVertexAttribArray(0);
-
-    glBindVertexArray(vao[MERCURIO]);
-    fillHemisphere(hemVertices, hemIndices, hemCounts, hemOffsets, RAGGIO_MERCURIO/SCALA);
-    glGenBuffers(2, mercurio_buffers);
-    glBindBuffer(GL_ARRAY_BUFFER, mercurio_buffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(hemVertices), hemVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mercurio_buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hemIndices), hemIndices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(hemVertices[0]), 0);
-    glEnableVertexAttribArray(0);
-
-    glBindVertexArray(vao[VENERE]);
-    fillHemisphere(hemVertices, hemIndices, hemCounts, hemOffsets, RAGGIO_VENERE/SCALA);
-    glGenBuffers(2, venere_buffers);
-    glBindBuffer(GL_ARRAY_BUFFER, venere_buffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(hemVertices), hemVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, venere_buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hemIndices), hemIndices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(hemVertices[0]), 0);
-    glEnableVertexAttribArray(0);
-
-    glBindVertexArray(vao[TERRA]);
-    fillHemisphere(hemVertices, hemIndices, hemCounts, hemOffsets, RAGGIO_TERRA/SCALA);
-    glGenBuffers(2, terra_buffers);
-    glBindBuffer(GL_ARRAY_BUFFER, terra_buffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(hemVertices), hemVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, terra_buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hemIndices), hemIndices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(hemVertices[0]), 0);
-    glEnableVertexAttribArray(0);
-
-    glBindVertexArray(vao[MARTE]);
-    fillHemisphere(hemVertices, hemIndices, hemCounts, hemOffsets, RAGGIO_MARTE/SCALA);
-    glGenBuffers(2, marte_buffers);
-    glBindBuffer(GL_ARRAY_BUFFER, marte_buffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(hemVertices), hemVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, marte_buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hemIndices), hemIndices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(hemVertices[0]), 0);
-    glEnableVertexAttribArray(0);
-
-    glBindVertexArray(vao[GIOVE]);
-    fillHemisphere(hemVertices, hemIndices, hemCounts, hemOffsets, RAGGIO_GIOVE/SCALA);
-    glGenBuffers(2, giove_buffers);
-    glBindBuffer(GL_ARRAY_BUFFER, giove_buffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(hemVertices), hemVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, giove_buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hemIndices), hemIndices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(hemVertices[0]), 0);
-    glEnableVertexAttribArray(0);
-
-    glBindVertexArray(vao[SATURNO]);
-    fillHemisphere(hemVertices, hemIndices, hemCounts, hemOffsets, RAGGIO_SATURNO/SCALA);
-    glGenBuffers(2, saturno_buffers);
-    glBindBuffer(GL_ARRAY_BUFFER, saturno_buffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(hemVertices), hemVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, saturno_buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hemIndices), hemIndices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(hemVertices[0]), 0);
-    glEnableVertexAttribArray(0);
-
-    glBindVertexArray(vao[URANO]);
-    fillHemisphere(hemVertices, hemIndices, hemCounts, hemOffsets, RAGGIO_URANO/SCALA);
-    glGenBuffers(2, urano_buffers);
-    glBindBuffer(GL_ARRAY_BUFFER, urano_buffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(hemVertices), hemVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, urano_buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hemIndices), hemIndices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(hemVertices[0]), 0);
-    glEnableVertexAttribArray(0);
-
-    glBindVertexArray(vao[NETTUNO]);
-    fillHemisphere(hemVertices, hemIndices, hemCounts, hemOffsets, RAGGIO_NETTUNO/SCALA);
-    glGenBuffers(2, nettuno_buffers);
-    glBindBuffer(GL_ARRAY_BUFFER, nettuno_buffers[0]);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(hemVertices), hemVertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, nettuno_buffers[1]);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(hemIndices), hemIndices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(hemVertices[0]), 0);
-    glEnableVertexAttribArray(0);
-
+    inizializza_buffer_pianeta(SOLE, RAGGIO_SOLE, sole_buffers);
+    inizializza_buffer_pianeta(MERCURIO, RAGGIO_MERCURIO, mercurio_buffers);
+    inizializza_buffer_pianeta(VENERE, RAGGIO_VENERE, venere_buffers);
+    inizializza_buffer_pianeta(TERRA, RAGGIO_TERRA, terra_buffers);
+    inizializza_buffer_pianeta(MARTE, RAGGIO_MARTE, marte_buffers);
+    inizializza_buffer_pianeta(GIOVE, RAGGIO_GIOVE, giove_buffers);
+    inizializza_buffer_pianeta(SATURNO, RAGGIO_SATURNO, saturno_buffers);
+    inizializza_buffer_pianeta(URANO, RAGGIO_URANO, urano_buffers);
+    inizializza_buffer_pianeta(NETTUNO, RAGGIO_NETTUNO, nettuno_buffers);
 }
 
 int main(int argc, char** argv){
